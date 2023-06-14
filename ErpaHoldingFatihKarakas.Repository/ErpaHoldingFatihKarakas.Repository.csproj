@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ErpaHoldingFatihKarakas.Domain\ErpaHoldingFatihKarakas.Domain.csproj" />
+    <ProjectReference Include="..\ErpaHoldingFatihKarakas.Persistence\ErpaHoldingFatihKarakas.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
+</Project>

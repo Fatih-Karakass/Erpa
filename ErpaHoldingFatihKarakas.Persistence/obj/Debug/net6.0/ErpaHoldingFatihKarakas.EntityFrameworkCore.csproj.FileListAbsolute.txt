@@ -1,0 +1,17 @@
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Persistence\bin\Debug\net6.0\ErpaHoldingFatihKarakas.EntityFrameworkCore.deps.json
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Persistence\bin\Debug\net6.0\ErpaHoldingFatihKarakas.EntityFrameworkCore.runtimeconfig.json
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Persistence\bin\Debug\net6.0\ErpaHoldingFatihKarakas.EntityFrameworkCore.dll
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Persistence\bin\Debug\net6.0\ErpaHoldingFatihKarakas.EntityFrameworkCore.pdb
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Persistence\bin\Debug\net6.0\ErpaHoldingFatihKarakas.Domain.dll
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Persistence\bin\Debug\net6.0\ErpaHoldingFatihKarakas.Domain.pdb
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Persistence\obj\Debug\net6.0\ErpaHoldingFatihKarakas.EntityFrameworkCore.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Persistence\obj\Debug\net6.0\ErpaHoldingFatihKarakas.EntityFrameworkCore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Persistence\obj\Debug\net6.0\ErpaHoldingFatihKarakas.EntityFrameworkCore.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Persistence\obj\Debug\net6.0\ErpaHoldingFatihKarakas.EntityFrameworkCore.AssemblyInfo.cs
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Persistence\obj\Debug\net6.0\ErpaHoldingFatihKarakas.EntityFrameworkCore.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Persistence\obj\Debug\net6.0\ErpaHoldingFatihKarakas.EntityFrameworkCore.csproj.CopyComplete
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Persistence\obj\Debug\net6.0\ErpaHoldingFatihKarakas.EntityFrameworkCore.dll
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Persistence\obj\Debug\net6.0\refint\ErpaHoldingFatihKarakas.EntityFrameworkCore.dll
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Persistence\obj\Debug\net6.0\ErpaHoldingFatihKarakas.EntityFrameworkCore.pdb
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Persistence\obj\Debug\net6.0\ErpaHoldingFatihKarakas.EntityFrameworkCore.genruntimeconfig.cache
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Persistence\obj\Debug\net6.0\ref\ErpaHoldingFatihKarakas.EntityFrameworkCore.dll

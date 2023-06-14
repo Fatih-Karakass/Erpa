@@ -1,0 +1,17 @@
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Repository\bin\Debug\net6.0\ErpaHoldingFatihKarakas.Repository.deps.json
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Repository\bin\Debug\net6.0\ErpaHoldingFatihKarakas.Repository.dll
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Repository\bin\Debug\net6.0\ErpaHoldingFatihKarakas.Repository.pdb
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Repository\bin\Debug\net6.0\ErpaHoldingFatihKarakas.Domain.dll
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Repository\bin\Debug\net6.0\ErpaHoldingFatihKarakas.EntityFrameworkCore.dll
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Repository\bin\Debug\net6.0\ErpaHoldingFatihKarakas.Domain.pdb
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Repository\bin\Debug\net6.0\ErpaHoldingFatihKarakas.EntityFrameworkCore.pdb
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Repository\obj\Debug\net6.0\ErpaHoldingFatihKarakas.Repository.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Repository\obj\Debug\net6.0\ErpaHoldingFatihKarakas.Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Repository\obj\Debug\net6.0\ErpaHoldingFatihKarakas.Repository.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Repository\obj\Debug\net6.0\ErpaHoldingFatihKarakas.Repository.AssemblyInfo.cs
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Repository\obj\Debug\net6.0\ErpaHoldingFatihKarakas.Repository.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Repository\obj\Debug\net6.0\ErpaHoldingFatihKarakas.Repository.csproj.CopyComplete
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Repository\obj\Debug\net6.0\ErpaHoldingFatihKarakas.Repository.dll
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Repository\obj\Debug\net6.0\refint\ErpaHoldingFatihKarakas.Repository.dll
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Repository\obj\Debug\net6.0\ErpaHoldingFatihKarakas.Repository.pdb
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Repository\obj\Debug\net6.0\ref\ErpaHoldingFatihKarakas.Repository.dll

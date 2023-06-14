@@ -1,0 +1,12 @@
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Domain\bin\Debug\net6.0\ErpaHoldingFatihKarakas.Domain.deps.json
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Domain\bin\Debug\net6.0\ErpaHoldingFatihKarakas.Domain.dll
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Domain\bin\Debug\net6.0\ErpaHoldingFatihKarakas.Domain.pdb
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Domain\obj\Debug\net6.0\ErpaHoldingFatihKarakas.Domain.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Domain\obj\Debug\net6.0\ErpaHoldingFatihKarakas.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Domain\obj\Debug\net6.0\ErpaHoldingFatihKarakas.Domain.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Domain\obj\Debug\net6.0\ErpaHoldingFatihKarakas.Domain.AssemblyInfo.cs
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Domain\obj\Debug\net6.0\ErpaHoldingFatihKarakas.Domain.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Domain\obj\Debug\net6.0\ErpaHoldingFatihKarakas.Domain.dll
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Domain\obj\Debug\net6.0\refint\ErpaHoldingFatihKarakas.Domain.dll
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Domain\obj\Debug\net6.0\ErpaHoldingFatihKarakas.Domain.pdb
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas.Domain\obj\Debug\net6.0\ref\ErpaHoldingFatihKarakas.Domain.dll
