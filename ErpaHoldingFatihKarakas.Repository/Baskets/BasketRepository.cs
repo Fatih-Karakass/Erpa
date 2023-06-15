@@ -28,5 +28,15 @@ namespace ErpaHoldingFatihKarakas.Repository.Baskets
             await _appDbContext.SaveChangesAsync();
 
         }
+        public async Task RemoveProductFromBasket(int basketId,int productId)
+        {
+            var basketproducts = await _appDbContext.BasketProducts.Where(x => x.BasketId == basketId && x.ProductId == productId).FirstOrDefaultAsync();
+            if (basketproducts == null)
+            {
+                throw new Exception("Bulunamadı");
+            }
+            _appDbContext.BasketProducts.Remove(basketproducts);
+            await _appDbContext.SaveChangesAsync();
+        }
     }
 }

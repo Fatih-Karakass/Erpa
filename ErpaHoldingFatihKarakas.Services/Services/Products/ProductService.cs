@@ -15,19 +15,21 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Products
     public class ProductService:IProductServices
     {
         private readonly IProductRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
 
         private readonly IMapper _mapper;
-        public ProductService(IProductRepository repository, IMapper mapper = null)
+        public ProductService(IProductRepository repository, IMapper mapper = null, IUnitOfWork unitOfWork = null)
         {
             _repository = repository;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<ProductDto> CreateAsync(ProductCreateDto productDto)
         {
            Product product=_mapper.Map<Product>(productDto);
            var producFromDb= await _repository.CreateAsync(product);
-
+            await _unitOfWork.SaveChangesAsync();
             return _mapper.Map<ProductDto>(producFromDb);
         }
 
@@ -39,6 +41,7 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Products
                 throw new Exception("Bulunamadı");
             }
             await _repository.DeleteAsync(product);
+            await _unitOfWork.SaveChangesAsync();
         }
 
         public async Task<ProductDto> Get(int id)
@@ -60,7 +63,7 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Products
 
         public async Task<List<ProductDto>> GetAllByCategory(int CategoryId)
         {
-            var productList = await _repository.GetAll().Where(x => x.CategoryId == CategoryId).ToListAsync();
+            var productList = await _repository.GetAll().Include(x=>x.Category).Where(x => x.CategoryId == CategoryId).ToListAsync();
             return _mapper.Map<List<ProductDto>>(productList);
         }
 
@@ -73,6 +76,7 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Products
             }
             product.IsPublished = false;
            var productFromDb= await _repository.UpdateAsync(product);
+            await _unitOfWork.SaveChangesAsync();
             return _mapper.Map<ProductDto>(productFromDb);
         }
 
@@ -85,6 +89,8 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Products
             }
             product.IsPublished = true;
             var productFromDb = await _repository.UpdateAsync(product);
+            await _unitOfWork.SaveChangesAsync();
+
             return _mapper.Map<ProductDto>(productFromDb);
         }
 
@@ -92,8 +98,10 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Products
         {
          
             var product = _mapper.Map<Product>(productDto);
-            //test edilicek
+           
            var productFromDb= await _repository.UpdateAsync(product);
+            await _unitOfWork.SaveChangesAsync();
+
             return _mapper.Map<ProductDto>(productFromDb);
         }
 

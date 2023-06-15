@@ -72,10 +72,10 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
         }
         [HttpPost]
 
-        public async Task<IActionResult> RemoveCategoryProduct(int productId, int categoryId)
+        public  async Task<IActionResult> RemoveCategoryProduct(int productId, int categoryId)
         {
 
-            var category = _categoryServices.RemoveCategoryProduct(productId, categoryId);
+            var category =  _categoryServices.RemoveCategoryProduct(productId, categoryId);
             return Ok(category);
 
         }

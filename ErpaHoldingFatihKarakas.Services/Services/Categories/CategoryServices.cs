@@ -1,16 +1,10 @@
 ﻿using AutoMapper;
 using ErpaHoldingFatihKarakas.Domain.Categories;
 using ErpaHoldingFatihKarakas.Domain.Categories.Dto;
-using ErpaHoldingFatihKarakas.Domain.Models.Dto;
 using ErpaHoldingFatihKarakas.Domain.Products;
 using ErpaHoldingFatihKarakas.Domain.Repositories;
 using ErpaHoldingFatihKarakas.Domain.Services;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ErpaHoldingFatihKarakas.Application.Services.Categories
 {
@@ -62,6 +56,7 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Categories
                 throw new Exception("Bulunamadı");
             }
             await _repository.DeleteAsync(category);
+            await _unitOfWork.SaveChangesAsync();
         }
 
         public async Task<CategoryDto> Get(int id)
@@ -76,8 +71,12 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Categories
 
         public async Task<List<CategoryDto>> GetAll()
         {
-            var CategoryList = await _repository.GetAll().Include(x=>x.Products).ToListAsync();
-            return _mapper.Map<List<CategoryDto>>(CategoryList);
+            var categoryList = await _repository.GetAll().Include(x=>x.Products).ToListAsync();
+            if (categoryList == null)
+            {
+                throw new Exception("Bulunamadı");
+            }
+            return _mapper.Map<List<CategoryDto>>(categoryList);
         }
 
         public async Task RemoveCategoryProduct(int productId, int categoryId)

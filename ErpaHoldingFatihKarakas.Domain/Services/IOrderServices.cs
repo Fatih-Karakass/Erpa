@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ErpaHoldingFatihKarakas.Domain.Authentication;
+using ErpaHoldingFatihKarakas.Domain.Orders.Dto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,10 @@ namespace ErpaHoldingFatihKarakas.Domain.Services
 {
     public interface IOrderServices
     {
+        public  Task<List<OrderDto>> ListAllOrder(); 
+        public Task<OrderDto> GetOrder(int id,Guid userId);
+        public Task<OrderDto> GetOrderByUser(User user);
+
+        public Task<OrderUpdateDto> UpdateOrder(int orderId, Guid userId);
     }
 }

@@ -26,19 +26,19 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
         [HttpGet]
 
 
-        public async Task<IActionResult> RemoveProductFromBasket(int productId)
+        public async Task<IActionResult> RemoveProductFromBasket(int productId,int productCount,Guid userId)
         {
 
-            var basket =  _basketServices.RemoveProductFromBasket(productId);
+            var basket =  _basketServices.AddProductToBasket(productId,productCount,userId);
             return Ok(basket);
 
         }
         [HttpPut]
 
-        public async Task<IActionResult> UpdateBasket(int productId,int basketId)
+        public async Task<IActionResult> UpdateBasket(int productId,int productCount,Guid userId)
         {
 
-            var basket = _basketServices.UpdateBasket(productId, basketId,5);
+            var basket = _basketServices.AddProductToBasket(productId, productCount,userId);
             return Ok(basket);
 
         }

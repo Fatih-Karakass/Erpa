@@ -1,15 +1,9 @@
 ﻿using AutoMapper;
 using ErpaHoldingFatihKarakas.Domain.Brands;
 using ErpaHoldingFatihKarakas.Domain.Brands.Dto;
-using ErpaHoldingFatihKarakas.Domain.Models.Dto;
 using ErpaHoldingFatihKarakas.Domain.Repositories;
 using ErpaHoldingFatihKarakas.Domain.Services;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ErpaHoldingFatihKarakas.Application.Services.Brands
 {
@@ -18,19 +12,22 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Brands
         private readonly IBrandRepository _repository;
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public BrandServices(IBrandRepository repository, IMapper mapper, IProductRepository productRepository)
+
+        public BrandServices(IBrandRepository repository, IMapper mapper, IProductRepository productRepository, IUnitOfWork unitOfWork)
         {
             _repository = repository;
             _mapper = mapper;
             _productRepository = productRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<BrandCreateDto> CreateAsync(BrandCreateDto brandCreateDto)
         {
             var Brand = _mapper.Map<Brand>(brandCreateDto);
-            
             await _repository.CreateAsync(Brand);
+            await _unitOfWork.SaveChangesAsync();
             return _mapper.Map<BrandCreateDto>(Brand);
         }
 
@@ -42,21 +39,22 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Brands
                 throw new Exception("Bulunamadı");
             }
             await _repository.DeleteAsync(Brand);
+            await _unitOfWork.SaveChangesAsync();
         }
 
         public async Task<BrandDto> Get(int id)
         {
-            var Brand = await _repository.GetByIdAsync(id);
-            if (Brand == null)
+            var brand = await _repository.GetAll().Include(x => x.Products).Where(x => x.Id == id).FirstOrDefaultAsync();
+            if (brand == null)
             {
                 throw new Exception("Bulunamadı");
             }
-            return _mapper.Map<BrandDto>(Brand);
+            return _mapper.Map<BrandDto>(brand);
         }
 
         public async Task<List<BrandDto>> GetAll()
         {
-            var BrandList = await _repository.GetAll().ToListAsync();
+            var BrandList = await _repository.GetAll().Include(x=>x.Products).ToListAsync();
             return _mapper.Map<List<BrandDto>>(BrandList);
         }
 
@@ -72,6 +70,7 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Brands
         {
             var Brand = _mapper.Map<Brand>(brandUpdateDto);
             var BrandFromDb = await _repository.UpdateAsync(Brand);
+            await _unitOfWork.SaveChangesAsync();
             return _mapper.Map<BrandUpdateDto>(BrandFromDb);
         }
     }

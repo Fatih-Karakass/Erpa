@@ -14,7 +14,6 @@ namespace ErpaHoldingFatihKarakas.Repository.Products
         public ProductRepository(ApplicationDbContext appDbContext) : base(appDbContext)
         {
         }
-        //parametreden kategori alıop belirli bir kategoriye ait ürünleri getiren repository,method
 
     }
 }
