@@ -1,5 +1,6 @@
 ﻿using ErpaHoldingFatihKarakas.Domain.Products.Dto;
 using ErpaHoldingFatihKarakas.Domain.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ErpaHoldingFatihKarakas.API.Controllers
@@ -16,6 +17,7 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
             _productServices = productServices;
         }
         [HttpPost]
+        [Authorize(Roles ="Admin")]
         public async Task<IActionResult> AddProduct(ProductCreateDto productDto)
         {
 

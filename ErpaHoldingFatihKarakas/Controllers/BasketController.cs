@@ -38,7 +38,7 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
         public async Task<IActionResult> UpdateBasket(int productId,int basketId)
         {
 
-            var basket = _basketServices.UpdateBasket(productId, basketId);
+            var basket = _basketServices.UpdateBasket(productId, basketId,5);
             return Ok(basket);
 
         }

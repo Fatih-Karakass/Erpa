@@ -12,7 +12,7 @@ namespace ErpaHoldingFatihKarakas.Repository
     //User işlemleri burdan mı yapacak ?
     public class GenericRepository<T,Id> : IGenericRepository<T,Id> where T : class
     {
-        private readonly ApplicationDbContext _appDbContext;
+        protected readonly ApplicationDbContext _appDbContext;
         private readonly DbSet<T> _dbSet;
         public GenericRepository(ApplicationDbContext appDbContext)
         {
@@ -26,7 +26,7 @@ namespace ErpaHoldingFatihKarakas.Repository
                 throw new ArgumentNullException(nameof(Entity));
             }
           var result= await _dbSet.AddAsync(Entity);
-            await _appDbContext.SaveChangesAsync();
+           
             return result.Entity;
 
         }
@@ -38,7 +38,7 @@ namespace ErpaHoldingFatihKarakas.Repository
                 throw new ArgumentNullException(nameof(Entity));
             }
             var result =  _dbSet.Remove(Entity);
-            await _appDbContext.SaveChangesAsync();
+            
             
         }
 
@@ -65,7 +65,7 @@ namespace ErpaHoldingFatihKarakas.Repository
                 throw new ArgumentNullException(nameof(Entity));
             }
             var result = _dbSet.Update(Entity);
-            await _appDbContext.SaveChangesAsync();
+           
             return result.Entity;
         }
     }

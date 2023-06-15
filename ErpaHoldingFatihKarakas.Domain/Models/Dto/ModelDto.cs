@@ -1,4 +1,5 @@
 ﻿using ErpaHoldingFatihKarakas.Domain.Products;
+using ErpaHoldingFatihKarakas.Domain.Products.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,6 @@ namespace ErpaHoldingFatihKarakas.Domain.Models.Dto
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public Product Product { get; set; }
+        public ProductDto Product { get; set; }
     }
 }

@@ -11,8 +11,8 @@ namespace ErpaHoldingFatihKarakas.Domain.Authentication
 {
     public class User:IdentityUser<Guid>
     {
-        public int TcNo { get; set; }
-        public string Photo { get; set; }
+        public string TcNo { get; set; }
+        public string? Photo { get; set; }
         public List<Order> Orders{ get; set; }
         public List<Basket> Baskets{ get; set; }
     }

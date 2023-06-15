@@ -1,3 +1,0 @@
-1=basket ekleme,silme,güncelleme
-2=order,
-3=User,

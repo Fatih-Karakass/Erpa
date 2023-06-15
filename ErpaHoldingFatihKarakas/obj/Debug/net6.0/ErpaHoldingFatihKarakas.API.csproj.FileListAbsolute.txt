@@ -76,3 +76,4 @@ C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKaraka
 C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas\obj\Debug\net6.0\ErpaHoldingFatihKarakas.API.pdb
 C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas\obj\Debug\net6.0\ErpaHoldingFatihKarakas.API.genruntimeconfig.cache
 C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas\obj\Debug\net6.0\ref\ErpaHoldingFatihKarakas.API.dll
+C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

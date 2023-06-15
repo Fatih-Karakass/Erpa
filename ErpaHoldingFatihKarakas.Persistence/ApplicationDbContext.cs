@@ -1,5 +1,6 @@
 ﻿using ErpaHoldingFatihKarakas.Domain.Authentication;
 using ErpaHoldingFatihKarakas.Domain.Base;
+using ErpaHoldingFatihKarakas.Domain.BasketProducts;
 using ErpaHoldingFatihKarakas.Domain.Baskets;
 using ErpaHoldingFatihKarakas.Domain.Brands;
 using ErpaHoldingFatihKarakas.Domain.Categories;
@@ -26,26 +27,54 @@ namespace ErpaHoldingFatihKarakas.EntityFrameworkCore
         public DbSet<Brand>Brands{ get; set; }
         public DbSet<Model> Models{ get; set; }
         public DbSet<Order> Orders{ get; set; }
-      
+        public DbSet<BasketProduct> BasketProducts { get; set; }
+        public DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
+
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
         {
 
         }
-      
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Product>()
+                  .HasMany(s => s.Baskets)
+                  .WithMany(s => s.Products)
+                  .UsingEntity<BasketProduct>
+                  (
+                sc => sc.HasOne(x => x.Basket).WithMany().HasForeignKey(x => x.BasketId).OnDelete(DeleteBehavior.Cascade),
+                sc => sc.HasOne(x => x.Product).WithMany().HasForeignKey(x => x.ProductId).OnDelete(DeleteBehavior.Cascade),
+                sc => sc.HasKey(x => new { x.BasketId, x.ProductId })
+
+
+                );
+
+            base.OnModelCreating(builder);
+        }
+
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            var httpContextAccessor = this.GetService<IHttpContextAccessor>();
-            byte[] userData = null;
             Guid? userId = null;
-            httpContextAccessor.HttpContext?.Session.TryGetValue("UserId", out userData);
 
-            if (userData != null)
+            try
+            {
+                var httpContextAccessor = this.GetService<IHttpContextAccessor>();
+                byte[] userData = null;
+                httpContextAccessor.HttpContext?.Session.TryGetValue("UserId", out userData);
+
+                if (userData != null)
+                {
+
+                    userId = Guid.Parse(System.Text.Encoding.UTF8.GetString(userData));
+                }
+
+            }
+            catch (Exception)
             {
 
-                userId = Guid.Parse(System.Text.Encoding.UTF8.GetString(userData));
+                
             }
-
+           
             foreach (var item in ChangeTracker.Entries())
             {
                 if(item.Entity is BaseEntity entity)

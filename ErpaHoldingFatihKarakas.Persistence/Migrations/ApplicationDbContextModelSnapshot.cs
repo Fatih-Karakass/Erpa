@@ -22,21 +22,6 @@ namespace ErpaHoldingFatihKarakas.EntityFrameworkCore.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("BasketProduct", b =>
-                {
-                    b.Property<int>("BasketId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("BasketId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("BasketProduct");
-                });
-
             modelBuilder.Entity("ErpaHoldingFatihKarakas.Domain.Authentication.Role", b =>
                 {
                     b.Property<Guid>("Id")
@@ -109,14 +94,14 @@ namespace ErpaHoldingFatihKarakas.EntityFrameworkCore.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Photo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TcNo")
-                        .HasColumnType("int");
+                    b.Property<string>("TcNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
@@ -136,6 +121,47 @@ namespace ErpaHoldingFatihKarakas.EntityFrameworkCore.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("ErpaHoldingFatihKarakas.Domain.Authentication.UserRefreshToken", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Expiration")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserRefreshTokens");
+                });
+
+            modelBuilder.Entity("ErpaHoldingFatihKarakas.Domain.BasketProducts.BasketProduct", b =>
+                {
+                    b.Property<int>("BasketId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductCount")
+                        .HasColumnType("int");
+
+                    b.HasKey("BasketId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("BasketProducts");
                 });
 
             modelBuilder.Entity("ErpaHoldingFatihKarakas.Domain.Baskets.Basket", b =>
@@ -160,9 +186,6 @@ namespace ErpaHoldingFatihKarakas.EntityFrameworkCore.Migrations
 
                     b.Property<bool>("IsOrdered")
                         .HasColumnType("bit");
-
-                    b.Property<int>("ProductCount")
-                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateTime")
                         .HasColumnType("datetime2");
@@ -301,6 +324,10 @@ namespace ErpaHoldingFatihKarakas.EntityFrameworkCore.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Adress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("BasketId")
                         .HasColumnType("int");
@@ -507,19 +534,23 @@ namespace ErpaHoldingFatihKarakas.EntityFrameworkCore.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("BasketProduct", b =>
+            modelBuilder.Entity("ErpaHoldingFatihKarakas.Domain.BasketProducts.BasketProduct", b =>
                 {
-                    b.HasOne("ErpaHoldingFatihKarakas.Domain.Baskets.Basket", null)
+                    b.HasOne("ErpaHoldingFatihKarakas.Domain.Baskets.Basket", "Basket")
                         .WithMany()
                         .HasForeignKey("BasketId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ErpaHoldingFatihKarakas.Domain.Products.Product", null)
+                    b.HasOne("ErpaHoldingFatihKarakas.Domain.Products.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Basket");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("ErpaHoldingFatihKarakas.Domain.Baskets.Basket", b =>

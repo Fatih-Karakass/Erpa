@@ -115,6 +115,21 @@ namespace ErpaHoldingFatihKarakas.EntityFrameworkCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserRefreshTokens",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Expiration = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserRefreshTokens", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -227,7 +242,6 @@ namespace ErpaHoldingFatihKarakas.EntityFrameworkCore.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProductCount = table.Column<int>(type: "int", nullable: false),
                     IsOrdered = table.Column<bool>(type: "bit", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -298,9 +312,10 @@ namespace ErpaHoldingFatihKarakas.EntityFrameworkCore.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     BasketId = table.Column<int>(type: "int", nullable: false),
+                    Adress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreaterUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -324,23 +339,24 @@ namespace ErpaHoldingFatihKarakas.EntityFrameworkCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BasketProduct",
+                name: "BasketProducts",
                 columns: table => new
                 {
                     BasketId = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false)
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    ProductCount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BasketProduct", x => new { x.BasketId, x.ProductId });
+                    table.PrimaryKey("PK_BasketProducts", x => new { x.BasketId, x.ProductId });
                     table.ForeignKey(
-                        name: "FK_BasketProduct_Baskets_BasketId",
+                        name: "FK_BasketProducts_Baskets_BasketId",
                         column: x => x.BasketId,
                         principalTable: "Baskets",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BasketProduct_Products_ProductId",
+                        name: "FK_BasketProducts_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -387,8 +403,8 @@ namespace ErpaHoldingFatihKarakas.EntityFrameworkCore.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BasketProduct_ProductId",
-                table: "BasketProduct",
+                name: "IX_BasketProducts_ProductId",
+                table: "BasketProducts",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
@@ -447,10 +463,13 @@ namespace ErpaHoldingFatihKarakas.EntityFrameworkCore.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "BasketProduct");
+                name: "BasketProducts");
 
             migrationBuilder.DropTable(
                 name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "UserRefreshTokens");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

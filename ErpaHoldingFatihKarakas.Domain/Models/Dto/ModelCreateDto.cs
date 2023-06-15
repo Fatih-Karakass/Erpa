@@ -10,6 +10,6 @@ namespace ErpaHoldingFatihKarakas.Domain.Models.Dto
     public class ModelCreateDto
     {
         public string Name { get; set; }
-        public Product Product { get; set; }
+     
     }
 }

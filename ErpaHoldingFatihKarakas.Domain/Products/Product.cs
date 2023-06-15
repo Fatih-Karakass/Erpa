@@ -15,7 +15,7 @@ namespace ErpaHoldingFatihKarakas.Domain.Products
         public int Desi { get; set; }
         public string Desciription { get; set; }
         public string Photo { get; set; }
-        public bool IsPublished{ get; set; }//ürün yayında mı ?
+        public bool IsPublished{ get; set; }
         public Model Model{ get; set; }
         [ForeignKey(nameof(Model))]
         public int ModelId { get; set; }
@@ -25,7 +25,7 @@ namespace ErpaHoldingFatihKarakas.Domain.Products
         public Category Category{ get; set; }
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
-        public List<Basket> Basket{ get; set; }
+        public List<Basket> Baskets{ get; set; }
        
 
     }

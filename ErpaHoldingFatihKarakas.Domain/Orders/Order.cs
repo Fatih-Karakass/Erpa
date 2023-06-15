@@ -13,11 +13,12 @@ namespace ErpaHoldingFatihKarakas.Domain.Orders
     public class Order: BaseEntity
     {
         
-        public DateTime CreateTime { get; set; }
+       
 
         public Basket Basket{ get; set; }
         [ForeignKey(nameof(Basket))]
         public int BasketId { get; set; }
+        public string Adress { get; set; }
 
     }
 }

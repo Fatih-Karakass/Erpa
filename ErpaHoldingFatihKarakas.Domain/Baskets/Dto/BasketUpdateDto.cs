@@ -1,6 +1,7 @@
 ﻿using ErpaHoldingFatihKarakas.Domain.Authentication;
 using ErpaHoldingFatihKarakas.Domain.Orders;
 using ErpaHoldingFatihKarakas.Domain.Products;
+using ErpaHoldingFatihKarakas.Domain.Products.Dto;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,9 +16,9 @@ namespace ErpaHoldingFatihKarakas.Domain.Baskets.Dto
         public int Id { get; set; }
    
     
-        public List<Product> Products { get; set; }
-        public int ProductCount { get; set; }
+        public List<ProductDto> Products { get; set; }
+        
 
-        public bool IsOrdered { get; set; } = false;
+        public bool IsOrdered { get; set; } 
     }
 }

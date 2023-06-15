@@ -29,6 +29,7 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Brands
         public async Task<BrandCreateDto> CreateAsync(BrandCreateDto brandCreateDto)
         {
             var Brand = _mapper.Map<Brand>(brandCreateDto);
+            
             await _repository.CreateAsync(Brand);
             return _mapper.Map<BrandCreateDto>(Brand);
         }

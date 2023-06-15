@@ -10,8 +10,10 @@ namespace ErpaHoldingFatihKarakas.Domain.Orders.Dto
 {
     public class OrderCreateDto
     {
-        public DateTime CreateTime { get; set; }
-        
         public int BasketId { get; set; }
+
+        public string Adress { get; set; }
+
+
     }
 }

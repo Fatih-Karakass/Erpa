@@ -1,4 +1,5 @@
 ﻿using ErpaHoldingFatihKarakas.Domain.Products;
+using ErpaHoldingFatihKarakas.Domain.Products.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace ErpaHoldingFatihKarakas.Domain.Baskets.Dto
     {
 
 
-        public List<Product> Products { get; set; }
-        public int ProductCount { get; set; }
+        public List<ProductDto> Products { get; set; }
+ 
 
         public bool IsOrdered { get; set; } = false;
     }
