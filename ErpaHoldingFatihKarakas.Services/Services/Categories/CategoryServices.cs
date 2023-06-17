@@ -27,9 +27,9 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Categories
 
         public async Task AddCategoryProduct(int productId, int categoryId)
         {
-           var product= await _productRepository.GetByIdAsync(productId);
+            var product = await _productRepository.GetByIdAsync(productId);
             var category = await _repository.GetAll().Include(x => x.Products).FirstOrDefaultAsync(x => x.Id == categoryId);
-            if (category == null||product==null) 
+            if (category == null || product == null)
             {
                 throw new Exception("Bulunamadı");
             }
@@ -40,7 +40,7 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Categories
 
         public async Task<CategoryCreateDto> CreateAsync(CategoryCreateDto categoryCreateDto)
         {
-           
+
             var category = _mapper.Map<Category>(categoryCreateDto);
             await _repository.CreateAsync(category);
             await _unitOfWork.SaveChangesAsync();
@@ -61,7 +61,7 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Categories
 
         public async Task<CategoryDto> Get(int id)
         {
-            var Category = await _repository.GetAll().Include(x => x.Products).FirstOrDefaultAsync(x=>x.Id==id);
+            var Category = await _repository.GetAll().Include(x => x.Products).FirstOrDefaultAsync(x => x.Id == id);
             if (Category == null)
             {
                 throw new Exception("Bulunamadı");
@@ -71,7 +71,7 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Categories
 
         public async Task<List<CategoryDto>> GetAll()
         {
-            var categoryList = await _repository.GetAll().Include(x=>x.Products).ToListAsync();
+            var categoryList = await _repository.GetAll().Include(x => x.Products).ToListAsync();
             if (categoryList == null)
             {
                 throw new Exception("Bulunamadı");
@@ -100,18 +100,18 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Categories
             {
                 throw new Exception("Bulunamadı");
             }
-            category.Name=categoryUpdateDto.Name;
+            category.Name = categoryUpdateDto.Name;
             category.Desciription = categoryUpdateDto.Desciription;
             category.SubCategoryId = categoryUpdateDto.SubCategoryId;
             category.Products = new List<Product>();
-            foreach(var item in categoryUpdateDto.ProductIds)
+            foreach (var item in categoryUpdateDto.ProductIds)
             {
                 var products = await _productRepository.GetByIdAsync(item);
                 if (products == null)
                 {
                     continue;
                 }
-                
+
                 category.Products.Add(products);
             }
             var categoryFromDb = await _repository.UpdateAsync(category);

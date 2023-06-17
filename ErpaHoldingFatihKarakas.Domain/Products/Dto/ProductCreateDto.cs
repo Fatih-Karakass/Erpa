@@ -12,8 +12,8 @@ namespace ErpaHoldingFatihKarakas.Domain.Products.Dto
         public IFormFile? Photo { get; set; }
         public bool IsPublished { get; set; }
         public int ModelId { get; set; }
-        public int BrandId { get; set; }       
+        public int BrandId { get; set; }
         public int CategoryId { get; set; }
-      
+
     }
 }

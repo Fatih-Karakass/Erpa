@@ -1,11 +1,4 @@
-﻿using ErpaHoldingFatihKarakas.Domain.Products;
-using ErpaHoldingFatihKarakas.Domain.Products.Dto;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ErpaHoldingFatihKarakas.Domain.Products.Dto;
 
 namespace ErpaHoldingFatihKarakas.Domain.Categories.Dto
 {
@@ -15,7 +8,7 @@ namespace ErpaHoldingFatihKarakas.Domain.Categories.Dto
         public string Name { get; set; }
         public string Desciription { get; set; }
         public List<ProductDto> Products { get; set; }
-    
+
         public int? SubCategoryId { get; set; }
     }
 }

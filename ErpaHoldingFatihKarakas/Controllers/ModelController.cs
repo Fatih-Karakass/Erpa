@@ -1,8 +1,6 @@
-﻿using ErpaHoldingFatihKarakas.Application.Services.Categories;
-using ErpaHoldingFatihKarakas.Domain.Categories.Dto;
-using ErpaHoldingFatihKarakas.Domain.Models.Dto;
+﻿using ErpaHoldingFatihKarakas.Domain.Models.Dto;
 using ErpaHoldingFatihKarakas.Domain.Services;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ErpaHoldingFatihKarakas.API.Controllers
@@ -19,6 +17,8 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
             _modelServices = modelServices;
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> AddModel(ModelCreateDto modelCreateDto)
         {
 
@@ -27,6 +27,7 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
 
         }
         [HttpPut]
+        [Authorize(Roles = "Admin")]
 
         public async Task<IActionResult> UpdateModel(ModelUpdateDto modelUpdateDto)
         {
@@ -44,6 +45,7 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
 
         }
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
 
         public async Task<IActionResult> DeleteModel(int id)
         {
@@ -70,6 +72,6 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
             return Ok(Model);
 
         }
-       
+
     }
 }

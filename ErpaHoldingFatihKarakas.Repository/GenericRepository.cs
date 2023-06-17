@@ -1,16 +1,11 @@
 ﻿using ErpaHoldingFatihKarakas.Domain.Repositories;
 using ErpaHoldingFatihKarakas.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ErpaHoldingFatihKarakas.Repository
 {
     //User işlemleri burdan mı yapacak ?
-    public class GenericRepository<T,Id> : IGenericRepository<T,Id> where T : class
+    public class GenericRepository<T, Id> : IGenericRepository<T, Id> where T : class
     {
         protected readonly ApplicationDbContext _appDbContext;
         private readonly DbSet<T> _dbSet;
@@ -21,12 +16,12 @@ namespace ErpaHoldingFatihKarakas.Repository
         }
         public async Task<T> CreateAsync(T Entity)
         {
-            if(Entity == null)
+            if (Entity == null)
             {
                 throw new ArgumentNullException(nameof(Entity));
             }
-          var result= await _dbSet.AddAsync(Entity);
-           
+            var result = await _dbSet.AddAsync(Entity);
+
             return result.Entity;
 
         }
@@ -37,25 +32,25 @@ namespace ErpaHoldingFatihKarakas.Repository
             {
                 throw new ArgumentNullException(nameof(Entity));
             }
-            var result =  _dbSet.Remove(Entity);
-            
-            
+            var result = _dbSet.Remove(Entity);
+
+
         }
 
-        public  IQueryable<T> GetAll()
+        public IQueryable<T> GetAll()
         {
             return _dbSet.AsQueryable<T>();
         }
 
         public async Task<T> GetByIdAsync(Id Id)// servis katmanında , Controllerda null kontrol et
         {
-            if(Id == null)
+            if (Id == null)
             {
                 throw new ArgumentNullException(nameof(Id));
             }
             return await _dbSet.FindAsync(Id);
-            
-            
+
+
         }
 
         public async Task<T> UpdateAsync(T Entity)
@@ -65,7 +60,7 @@ namespace ErpaHoldingFatihKarakas.Repository
                 throw new ArgumentNullException(nameof(Entity));
             }
             var result = _dbSet.Update(Entity);
-           
+
             return result.Entity;
         }
     }

@@ -11,27 +11,22 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ErpaHoldingFatihKarakas.EntityFrameworkCore
 {
-    public class ApplicationDbContext:IdentityDbContext<User,Role,Guid>
+    public class ApplicationDbContext : IdentityDbContext<User, Role, Guid>
     {
-        public DbSet<Product> Products{ get; set; }
-        public DbSet<Basket> Baskets{ get; set; }
-        public DbSet<Category> Categories{ get; set; }
-        public DbSet<Brand>Brands{ get; set; }
-        public DbSet<Model> Models{ get; set; }
-        public DbSet<Order> Orders{ get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Model> Models { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public DbSet<BasketProduct> BasketProducts { get; set; }
         public DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
 
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
 
         }
@@ -60,22 +55,23 @@ namespace ErpaHoldingFatihKarakas.EntityFrameworkCore
             {
                 var httpContextAccessor = this.GetService<IHttpContextAccessor>();
                 byte[] userData = null;
-               if( httpContextAccessor.HttpContext?.Session.TryGetValue("UserId", out userData)==true)
-             
+                httpContextAccessor.HttpContext?.Session.TryGetValue("UserId", out userData);
+                if (userData != null)
+
 
                     userId = Guid.Parse(System.Text.Encoding.UTF8.GetString(userData));
-               
+
 
             }
             catch (Exception)
             {
 
-                
+
             }
-           
+
             foreach (var item in ChangeTracker.Entries())
             {
-                if(item.Entity is BaseEntity entity)
+                if (item.Entity is BaseEntity entity)
                 {
                     switch (item.State)
                     {
@@ -106,7 +102,7 @@ namespace ErpaHoldingFatihKarakas.EntityFrameworkCore
 
 
                             break;
-                       
+
                     }
                 }
             }

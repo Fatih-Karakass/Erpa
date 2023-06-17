@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using ErpaHoldingFatihKarakas.Domain.Authentication;
 using ErpaHoldingFatihKarakas.Domain.Orders.Dto;
 using ErpaHoldingFatihKarakas.Domain.Repositories;
 using ErpaHoldingFatihKarakas.Domain.Services;
@@ -23,36 +22,36 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Orders
 
         public async Task<OrderDto> GetOrder(int id, Guid userId)
         {
-            var order = await  _orderRepository.GetAll()
-                
+            var order = await _orderRepository.GetAll()
+
                 .Include(x => x.Basket)
                 .ThenInclude(x => x.Products)
                 .Where(x => x.Basket.User.Id == userId)
                 .Where(x => x.Basket.IsOrdered == true)
                 .FirstOrDefaultAsync();
-            if(order == null)
+            if (order == null)
             {
                 throw new Exception("bulunamadı");
             }
             return _mapper.Map<OrderDto>(order);
-                
+
         }
 
         public async Task<List<OrderDto>> GetOrderByUser(string userName)
         {
             var order = await _orderRepository.GetAll()
                  .Include(x => x.Basket)
-                 .ThenInclude(x=>x.Products)
-                 .ThenInclude(x=>x.Baskets)
-                 .ThenInclude(x=>x.User)
+                 .ThenInclude(x => x.Products)
+                 .ThenInclude(x => x.Baskets)
+                 .ThenInclude(x => x.User)
                  .Where(x => x.Basket.IsOrdered == true)
-                 .Where(x=>x.Basket.User.UserName==userName)
+                 .Where(x => x.Basket.User.UserName == userName)
                  .ToListAsync();
             //.ThenInclude(x => x.Baskets)
             //     .ThenInclude(x => x.User)
             //     .Where(x => x.Basket.User.UserName == userName)
             //burda
-            if (order.Count==0)
+            if (order.Count == 0)
             {
                 throw new Exception("bulunamadı");
             }
@@ -75,18 +74,18 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Orders
 
         public async Task<OrderUpdateDto> UpdateOrder(int orderId, Guid userId)
         {
-            var order= await _orderRepository.GetAll()
-                .Include(x=>x.Basket)
-                .ThenInclude(x=>x.Products)
-                .Where(x=>x.Basket.User.Id==userId)
-                .Where(x=>x.Basket.IsOrdered==true)
-                .FirstOrDefaultAsync(x=>x.Id==orderId);
+            var order = await _orderRepository.GetAll()
+                .Include(x => x.Basket)
+                .ThenInclude(x => x.Products)
+                .Where(x => x.Basket.User.Id == userId)
+                .Where(x => x.Basket.IsOrdered == true)
+                .FirstOrDefaultAsync(x => x.Id == orderId);
             if (order == null)
             {
                 throw new Exception("bulunamadı");
             }
             return _mapper.Map<OrderUpdateDto>(order);
-           
+
         }
     }
 }

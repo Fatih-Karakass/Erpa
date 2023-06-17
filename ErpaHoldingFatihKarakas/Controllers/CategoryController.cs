@@ -1,8 +1,6 @@
-﻿using ErpaHoldingFatihKarakas.Application.Services.Products;
-using ErpaHoldingFatihKarakas.Domain.Categories.Dto;
-using ErpaHoldingFatihKarakas.Domain.Products.Dto;
+﻿using ErpaHoldingFatihKarakas.Domain.Categories.Dto;
 using ErpaHoldingFatihKarakas.Domain.Services;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ErpaHoldingFatihKarakas.API.Controllers
@@ -19,7 +17,7 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
             _categoryServices = categoryServices;
         }
         [HttpPost]
-
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddCategory(CategoryCreateDto categoryCreateDto)
         {
 
@@ -28,6 +26,7 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
 
         }
         [HttpPut]
+        [Authorize(Roles = "Admin")]
 
         public async Task<IActionResult> UpdateCategory(CategoryUpdateDto categoryUpdateDto)
         {
@@ -45,10 +44,12 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
 
         }
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> DeleteCategory(int id)
         {
 
-            var category =  _categoryServices.DeleteCategory(id);
+            var category = _categoryServices.DeleteCategory(id);
             return Ok(category);
 
         }
@@ -62,20 +63,23 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
 
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
 
-        public async Task<IActionResult> AddCategoryProduct(int productId,int categoryId)
+
+        public async Task<IActionResult> AddCategoryProduct(int productId, int categoryId)
         {
 
-            var category =  _categoryServices.AddCategoryProduct(productId, categoryId);
+            var category = _categoryServices.AddCategoryProduct(productId, categoryId);
             return Ok(category);
 
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
 
-        public  async Task<IActionResult> RemoveCategoryProduct(int productId, int categoryId)
+        public async Task<IActionResult> RemoveCategoryProduct(int productId, int categoryId)
         {
 
-            var category =  _categoryServices.RemoveCategoryProduct(productId, categoryId);
+            var category = _categoryServices.RemoveCategoryProduct(productId, categoryId);
             return Ok(category);
 
         }

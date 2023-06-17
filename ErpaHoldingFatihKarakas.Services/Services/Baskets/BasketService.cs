@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using ErpaHoldingFatihKarakas.Domain.Authentication;
-using ErpaHoldingFatihKarakas.Domain.BasketProducts;
 using ErpaHoldingFatihKarakas.Domain.Baskets;
 using ErpaHoldingFatihKarakas.Domain.Baskets.Dto;
 using ErpaHoldingFatihKarakas.Domain.Orders;
@@ -8,14 +6,7 @@ using ErpaHoldingFatihKarakas.Domain.Orders.Dto;
 using ErpaHoldingFatihKarakas.Domain.Products;
 using ErpaHoldingFatihKarakas.Domain.Repositories;
 using ErpaHoldingFatihKarakas.Domain.Services;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ErpaHoldingFatihKarakas.Application.Services.Baskets
 {
@@ -25,8 +16,8 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Baskets
         private readonly IProductRepository _productRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IOrderRepository _orderRepository;
-    
-  
+
+
         private readonly IMapper _mapper;
 
         public BasketService(IBasketRepository repository, IMapper mapper, IProductRepository productRepository, IUnitOfWork unitOfWork, IOrderRepository orderRepository)
@@ -41,15 +32,15 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Baskets
 
         public async Task AddProductToBasket(int productId, int productCount, Guid UserId)
         {
-            
-            var product=await _productRepository.GetByIdAsync(productId);
+
+            var product = await _productRepository.GetByIdAsync(productId);
             var basket = await _repository.GetAll()
                 .Where(x => x.IsOrdered == false)
-                .Include(x=>x.Products)
-                .Include(x=>x.User)
-                .Where(x=>x.User.Id==UserId)
+                .Include(x => x.Products)
+                .Include(x => x.User)
+                .Where(x => x.User.Id == UserId)
                 .FirstOrDefaultAsync();
-            if(product == null)
+            if (product == null)
             {
                 throw new Exception("Bulunamadı");
             }
@@ -66,7 +57,7 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Baskets
                     UserId = UserId
                 };
                 newbasket.Products.Add(product);
-               var basketFromDb= await _repository.CreateAsync(newbasket);
+                var basketFromDb = await _repository.CreateAsync(newbasket);
                 await _unitOfWork.SaveChangesAsync();
                 await _repository.UpdateProductCountBasket(basketFromDb.Id, productId, productCount);
                 await _unitOfWork.SaveChangesAsync();
@@ -83,13 +74,13 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Baskets
 
         public async Task<BasketDto> BasketFinished(int basketId, string adress)
         {
-            var basket= await _repository.GetAll().Include(x=>x.Products).FirstOrDefaultAsync(x=>x.Id==basketId);
+            var basket = await _repository.GetAll().Include(x => x.Products).FirstOrDefaultAsync(x => x.Id == basketId);
             if (basket == null)
             {
                 throw new Exception("Bulunamadı");
             }
             basket.IsOrdered = true;
-            var basketDto= _mapper.Map<BasketDto>(basket);
+            var basketDto = _mapper.Map<BasketDto>(basket);
             await OrderCreated(adress, basketDto);
             await _unitOfWork.SaveChangesAsync();
             return basketDto;
@@ -97,7 +88,7 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Baskets
 
         public async Task<BasketDto> ListBasket(int basketId)
         {
-            var basket= await _repository.GetAll().Include(x=>x.Products).FirstOrDefaultAsync(x=>x.Id==basketId);
+            var basket = await _repository.GetAll().Include(x => x.Products).FirstOrDefaultAsync(x => x.Id == basketId);
             if (basket == null)
             {
                 throw new Exception("Bulunamadı");
@@ -111,19 +102,19 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Baskets
                 .Include(x => x.User)
                 .Include(x => x.Products)
                 .Include(x => x.Order)
-                .FirstOrDefaultAsync(x=>x.Id==basketFromDb.Id);
+                .FirstOrDefaultAsync(x => x.Id == basketFromDb.Id);
             if (t == null)
             {
                 throw new Exception("bulunamadı");
             }
             var basket = _mapper.Map<Basket>(basketFromDb);
             Order order = new Order();
-            
+
             order.Adress = adress;
             order.Basket = t;
-           
+
             //order.Basket = basket;
-            
+
             await _orderRepository.CreateAsync(order);
             await _unitOfWork.SaveChangesAsync();
             return _mapper.Map<OrderDto>(order);

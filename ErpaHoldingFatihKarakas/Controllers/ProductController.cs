@@ -17,14 +17,17 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
             _productServices = productServices;
         }
         [HttpPost]
-        public async Task<IActionResult> AddProduct([FromForm]ProductCreateDto productDto)
+        [Authorize(Roles = "Admin")]
+
+        public async Task<IActionResult> AddProduct([FromForm] ProductCreateDto productDto)
         {
 
-          var product= await _productServices.CreateAsync(productDto);
+            var product = await _productServices.CreateAsync(productDto);
             return Ok(product);
-   
+
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
 
         public async Task<IActionResult> UpdateProduct([FromForm] ProductUpdateDto productDto)
         {
@@ -42,12 +45,13 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
 
         }
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
 
 
         public async Task<IActionResult> DeleteProduct(int id)
         {
 
-            var product =  _productServices.DeleteProduct(id);
+            var product = _productServices.DeleteProduct(id);
             return Ok(product);
 
         }
@@ -70,6 +74,7 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
 
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
 
         public async Task<IActionResult> PublishProduct(int id)
         {
@@ -79,6 +84,7 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
 
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
 
         public async Task<IActionResult> NonPublishProduct(int id)
         {

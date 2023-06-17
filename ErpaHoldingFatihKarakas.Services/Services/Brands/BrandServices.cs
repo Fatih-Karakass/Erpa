@@ -54,16 +54,16 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Brands
 
         public async Task<List<BrandDto>> GetAll()
         {
-            var BrandList = await _repository.GetAll().Include(x=>x.Products).ToListAsync();
+            var BrandList = await _repository.GetAll().Include(x => x.Products).ToListAsync();
             return _mapper.Map<List<BrandDto>>(BrandList);
         }
 
         public async Task<BrandDto> GetProductByBrand(int productId)
         {
             var Product = await _productRepository.GetByIdAsync(productId);
-            var Brand=await _repository.GetByIdAsync(Product.BrandId);
+            var Brand = await _repository.GetByIdAsync(Product.BrandId);
             return _mapper.Map<BrandDto>(Brand);
-            
+
         }
 
         public async Task<BrandUpdateDto> UpdateAsync(BrandUpdateDto brandUpdateDto)

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ErpaHoldingFatihKarakas.Domain.Authentication
+﻿namespace ErpaHoldingFatihKarakas.Domain.Authentication
 {
     public class UserRefreshToken
     {

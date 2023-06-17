@@ -1,7 +1,6 @@
 ﻿using ErpaHoldingFatihKarakas.Domain.Brands.Dto;
-using ErpaHoldingFatihKarakas.Domain.Repositories;
 using ErpaHoldingFatihKarakas.Domain.Services;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ErpaHoldingFatihKarakas.API.Controllers
@@ -19,7 +18,7 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
         }
         [HttpPost]
 
-
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateBrand(BrandCreateDto brandCreateDto)
         {
             var brand = await _brandRepository.CreateAsync(brandCreateDto);
@@ -27,6 +26,7 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
 
         }
         [HttpPut]
+        [Authorize(Roles = "Admin")]
 
         public async Task<IActionResult> UpdateBrand(BrandUpdateDto brandUpdateDto)
         {
@@ -36,14 +36,15 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
         }
         [HttpDelete]
 
-        public async Task<IActionResult> DeleteBrand(int Id )
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeleteBrand(int Id)
         {
-           await _brandRepository.Delete(Id);
+            await _brandRepository.Delete(Id);
             return Ok();
 
         }
         [HttpGet]
-        public async Task<IActionResult> GetAllBrand( )
+        public async Task<IActionResult> GetAllBrand()
         {
             var brand = await _brandRepository.GetAll();
             return Ok(brand);
@@ -53,13 +54,13 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
 
         public async Task<IActionResult> GetBrandProducts(int Id)
         {
-          var brand=  await _brandRepository.Get(Id);
+            var brand = await _brandRepository.Get(Id);
             return Ok(brand);
 
         }
         [HttpGet]
 
-        public async Task<IActionResult> GetProductByBrand( int productId)
+        public async Task<IActionResult> GetProductByBrand(int productId)
         {
             var brand = await _brandRepository.GetProductByBrand(productId);
             return Ok(brand);

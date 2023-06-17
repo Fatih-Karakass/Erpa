@@ -1,11 +1,4 @@
-﻿using ErpaHoldingFatihKarakas.Domain.Baskets;
-using ErpaHoldingFatihKarakas.Domain.Baskets.Dto;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ErpaHoldingFatihKarakas.Domain.Baskets.Dto;
 
 namespace ErpaHoldingFatihKarakas.Domain.Orders.Dto
 {
@@ -14,7 +7,7 @@ namespace ErpaHoldingFatihKarakas.Domain.Orders.Dto
         public int Id { get; set; }
 
 
-        public BasketDto Basket{ get; set; }
+        public BasketDto Basket { get; set; }
         public int BasketId { get; set; }
     }
 }

@@ -1,15 +1,9 @@
 ﻿using AutoMapper;
 using ErpaHoldingFatihKarakas.Domain.Models;
 using ErpaHoldingFatihKarakas.Domain.Models.Dto;
-using ErpaHoldingFatihKarakas.Domain.Products;
 using ErpaHoldingFatihKarakas.Domain.Repositories;
 using ErpaHoldingFatihKarakas.Domain.Services;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ErpaHoldingFatihKarakas.Application.Services.Models
 {
@@ -29,25 +23,25 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Models
 
         public async Task<ModelCreateDto> CreateAsync(ModelCreateDto modelCreateDto)
         {
-          
+
             var Model = _mapper.Map<Model>(modelCreateDto);
             await _repository.CreateAsync(Model);
             await _unitOfWork.SaveChangesAsync();
             return _mapper.Map<ModelCreateDto>(Model);
-            
+
 
         }
 
         public async Task DeleteModel(int Id)
         {
             var Model = await _repository.GetByIdAsync(Id);
-            if (Model== null)
+            if (Model == null)
             {
                 throw new Exception("Bulunamadı");
             }
             await _repository.DeleteAsync(Model);
             await _unitOfWork.SaveChangesAsync();
-    
+
         }
 
         public async Task<ModelDto> Get(int id)
@@ -68,7 +62,7 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Models
 
         public async Task<List<ModelDto>> GetAllByBrand(int BrandId)
         {
-            var ModelList = await _repository.GetAll().Include(x=>x.Product).ThenInclude(x=>x.Brand).Where(x => x.Product.BrandId == BrandId).ToListAsync();
+            var ModelList = await _repository.GetAll().Include(x => x.Product).ThenInclude(x => x.Brand).Where(x => x.Product.BrandId == BrandId).ToListAsync();
             return _mapper.Map<List<ModelDto>>(ModelList);
         }
 
@@ -79,8 +73,8 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Models
             {
                 throw new Exception("bulunamadı");
             }
-            model.Name=modelUpdateDto.Name;
-            var modelFromDb= await _repository.UpdateAsync(model);
+            model.Name = modelUpdateDto.Name;
+            var modelFromDb = await _repository.UpdateAsync(model);
             await _unitOfWork.SaveChangesAsync();
             return _mapper.Map<ModelUpdateDto>(modelFromDb);
         }

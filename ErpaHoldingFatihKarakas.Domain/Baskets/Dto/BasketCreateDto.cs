@@ -1,10 +1,4 @@
-﻿using ErpaHoldingFatihKarakas.Domain.Products;
-using ErpaHoldingFatihKarakas.Domain.Products.Dto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ErpaHoldingFatihKarakas.Domain.Products.Dto;
 
 namespace ErpaHoldingFatihKarakas.Domain.Baskets.Dto
 {
@@ -13,7 +7,7 @@ namespace ErpaHoldingFatihKarakas.Domain.Baskets.Dto
 
 
         public List<ProductDto> Products { get; set; }
- 
+
 
         public bool IsOrdered { get; set; } = false;
     }

@@ -1,10 +1,4 @@
 ﻿using ErpaHoldingFatihKarakas.Domain.Brands.Dto;
-using ErpaHoldingFatihKarakas.Domain.Models.Dto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ErpaHoldingFatihKarakas.Domain.Services
 {

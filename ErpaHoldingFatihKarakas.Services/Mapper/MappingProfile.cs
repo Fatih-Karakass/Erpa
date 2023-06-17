@@ -1,6 +1,4 @@
-﻿using ErpaHoldingFatihKarakas.Domain.Authentication;
-using ErpaHoldingFatihKarakas.Domain.Authentication.Dto;
-using ErpaHoldingFatihKarakas.Domain.Baskets;
+﻿using ErpaHoldingFatihKarakas.Domain.Baskets;
 using ErpaHoldingFatihKarakas.Domain.Baskets.Dto;
 using ErpaHoldingFatihKarakas.Domain.Brands;
 using ErpaHoldingFatihKarakas.Domain.Brands.Dto;
@@ -12,15 +10,10 @@ using ErpaHoldingFatihKarakas.Domain.Orders;
 using ErpaHoldingFatihKarakas.Domain.Orders.Dto;
 using ErpaHoldingFatihKarakas.Domain.Products;
 using ErpaHoldingFatihKarakas.Domain.Products.Dto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ErpaHoldingFatihKarakas.Application.Mapper
 {
-    public class MappingProfile: AutoMapper.Profile
+    public class MappingProfile : AutoMapper.Profile
     {
         public MappingProfile()
         {

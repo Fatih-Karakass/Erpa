@@ -2,21 +2,14 @@
 using ErpaHoldingFatihKarakas.Domain.Authentication.Dto;
 using ErpaHoldingFatihKarakas.Domain.Repositories;
 using ErpaHoldingFatihKarakas.Domain.Token;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ErpaHoldingFatihKarakas.Repository.Authentication
 {
     public class AuthenticationService : IAuthenticationService
     {
-       
+
         private readonly ITokenService _tokenService;
         private readonly UserManager<User> _userManager;
         private readonly IUnitOfWork _unitOfWork;
@@ -46,14 +39,14 @@ namespace ErpaHoldingFatihKarakas.Repository.Authentication
             {
                 throw new Exception("Email Veya Şifre Yanlış");
             }
-            var token = _tokenService.CreateToken(user);
+            var token = await _tokenService.CreateToken(user);
 
             var userRefreshToken = await _userRefreshTokenRepository.GetAll().Where(x => x.UserId == user.Id).SingleOrDefaultAsync();
 
             if (userRefreshToken == null)
             {
-               await _userRefreshTokenRepository.CreateAsync
-                    (new UserRefreshToken { UserId = user.Id, Code = token.RefreshToken, Expiration = token.RefreshTokenExpiration });
+                await _userRefreshTokenRepository.CreateAsync
+                     (new UserRefreshToken { UserId = user.Id, Code = token.RefreshToken, Expiration = token.RefreshTokenExpiration });
             }
             else
             {
@@ -67,7 +60,7 @@ namespace ErpaHoldingFatihKarakas.Repository.Authentication
             return token;
         }
 
-   
+
 
         public async Task<TokenDto> CreateTokenByRefreshToken(string refreshToken)
         {
@@ -85,7 +78,7 @@ namespace ErpaHoldingFatihKarakas.Repository.Authentication
                 throw new Exception("Bulunamadı");
             }
 
-            var tokenDto = _tokenService.CreateToken(user);
+            var tokenDto = await _tokenService.CreateToken(user);
 
             existRefreshToken.Code = tokenDto.RefreshToken;
             existRefreshToken.Expiration = tokenDto.RefreshTokenExpiration;
@@ -104,11 +97,11 @@ namespace ErpaHoldingFatihKarakas.Repository.Authentication
 
             }
 
-           await _userRefreshTokenRepository.DeleteAsync(existRefreshToken);
+            await _userRefreshTokenRepository.DeleteAsync(existRefreshToken);
 
             await _unitOfWork.SaveChangesAsync();
 
-       
+
         }
     }
 }

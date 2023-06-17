@@ -5,8 +5,8 @@ namespace ErpaHoldingFatihKarakas.Domain.Repositories
 {
     public interface ITokenService
     {
-        TokenDto CreateToken(User userApp);
+        Task<TokenDto> CreateToken(User userApp);
 
-       
+
     }
 }

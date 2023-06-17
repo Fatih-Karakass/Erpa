@@ -1,7 +1,7 @@
 ﻿using ErpaHoldingFatihKarakas.Domain.Authentication;
 using ErpaHoldingFatihKarakas.Domain.Authentication.Dto;
 using ErpaHoldingFatihKarakas.Domain.Repositories;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,14 +28,17 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
         {
             var result = await _authenticationService.CreateTokenAsync(loginDto);
 
-          
+
             return Ok(result);
         }
 
-   
+
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> RevokeRefreshToken(RefreshTokenDto refreshTokenDto)
         {
+
+
             await _authenticationService.RevokeRefreshToken(refreshTokenDto.Token);
 
             return Ok();
@@ -58,8 +61,8 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
                 UserName = userDto.UserName,
                 Email = userDto.Email,
                 PhoneNumber = userDto.PhoneNumber,
-                TcNo=userDto.TcNo
-                
+                TcNo = userDto.TcNo
+
             };
             var result = await _userManager.CreateAsync(User, userDto.Password);
             if (!result.Succeeded)
@@ -69,6 +72,8 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
             return Ok(User);
         }
         [HttpPost]
+        
+
         public async Task<IActionResult> CreateRole(RoleCreateDto roleDto)
         {
             var role = new Role
@@ -81,6 +86,21 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
                 return BadRequest(result);
             }
             return Ok(role);
+        }
+        [HttpPost]
+        [Authorize(Roles="Admin")]
+
+        public async Task<IActionResult> AssingRoleToUser(Guid userId, Guid roleId)
+        {
+            var role = await _roleManager.FindByIdAsync(roleId.ToString());
+            var user = await _userManager.FindByIdAsync(userId.ToString());
+            if (role == null || user == null)
+            {
+                return NotFound("Rol veya kullanıcı bulunamadı");
+
+            }
+            await _userManager.AddToRoleAsync(user, role.Name);
+            return Ok();
         }
     }
 }

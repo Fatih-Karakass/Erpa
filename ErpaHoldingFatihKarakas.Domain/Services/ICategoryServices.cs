@@ -1,10 +1,4 @@
 ﻿using ErpaHoldingFatihKarakas.Domain.Categories.Dto;
-using ErpaHoldingFatihKarakas.Domain.Models.Dto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ErpaHoldingFatihKarakas.Domain.Services
 {
@@ -15,8 +9,8 @@ namespace ErpaHoldingFatihKarakas.Domain.Services
         public Task DeleteCategory(int id);
         public Task<List<CategoryDto>> GetAll();
         public Task<CategoryDto> Get(int id);
-        public Task AddCategoryProduct(int productId,int categoryId); 
-        public Task RemoveCategoryProduct(int productId, int categoryId); 
+        public Task AddCategoryProduct(int productId, int categoryId);
+        public Task RemoveCategoryProduct(int productId, int categoryId);
 
 
 
