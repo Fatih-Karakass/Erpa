@@ -65,7 +65,6 @@ C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKaraka
 C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas\obj\Debug\net6.0\ErpaHoldingFatihKarakas.API.AssemblyInfoInputs.cache
 C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas\obj\Debug\net6.0\ErpaHoldingFatihKarakas.API.AssemblyInfo.cs
 C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas\obj\Debug\net6.0\ErpaHoldingFatihKarakas.API.csproj.CoreCompileInputs.cache
-C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas\obj\Debug\net6.0\ErpaHoldingFatihKarakas.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas\obj\Debug\net6.0\ErpaHoldingFatihKarakas.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas\obj\Debug\net6.0\staticwebassets.build.json
 C:\Users\user\Desktop\BICIRIK AVM\ErpaHoldingFatihKarakas\ErpaHoldingFatihKarakas\obj\Debug\net6.0\staticwebassets.development.json

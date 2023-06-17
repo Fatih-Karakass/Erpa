@@ -38,19 +38,25 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Orders
                 
         }
 
-        public async Task<OrderDto> GetOrderByUser(User user)
+        public async Task<List<OrderDto>> GetOrderByUser(string userName)
         {
             var order = await _orderRepository.GetAll()
                  .Include(x => x.Basket)
-                 .ThenInclude(x => x.Products)
-                 .Where(x => x.Basket.User.Id == user.Id)
+                 .ThenInclude(x=>x.Products)
+                 .ThenInclude(x=>x.Baskets)
+                 .ThenInclude(x=>x.User)
                  .Where(x => x.Basket.IsOrdered == true)
+                 .Where(x=>x.Basket.User.UserName==userName)
                  .ToListAsync();
-            if (order == null)
+            //.ThenInclude(x => x.Baskets)
+            //     .ThenInclude(x => x.User)
+            //     .Where(x => x.Basket.User.UserName == userName)
+            //burda
+            if (order.Count==0)
             {
                 throw new Exception("bulunamadı");
             }
-            return _mapper.Map<OrderDto>(order);
+            return _mapper.Map<List<OrderDto>>(order);
         }
 
         public async Task<List<OrderDto>> ListAllOrder()
@@ -75,6 +81,10 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Orders
                 .Where(x=>x.Basket.User.Id==userId)
                 .Where(x=>x.Basket.IsOrdered==true)
                 .FirstOrDefaultAsync(x=>x.Id==orderId);
+            if (order == null)
+            {
+                throw new Exception("bulunamadı");
+            }
             return _mapper.Map<OrderUpdateDto>(order);
            
         }

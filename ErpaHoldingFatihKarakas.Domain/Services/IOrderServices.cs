@@ -12,7 +12,7 @@ namespace ErpaHoldingFatihKarakas.Domain.Services
     {
         public  Task<List<OrderDto>> ListAllOrder(); 
         public Task<OrderDto> GetOrder(int id,Guid userId);
-        public Task<OrderDto> GetOrderByUser(User user);
+        public Task<List<OrderDto>> GetOrderByUser(string userName);
 
         public Task<OrderUpdateDto> UpdateOrder(int orderId, Guid userId);
     }

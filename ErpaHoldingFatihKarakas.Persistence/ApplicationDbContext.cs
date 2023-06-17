@@ -60,13 +60,11 @@ namespace ErpaHoldingFatihKarakas.EntityFrameworkCore
             {
                 var httpContextAccessor = this.GetService<IHttpContextAccessor>();
                 byte[] userData = null;
-                httpContextAccessor.HttpContext?.Session.TryGetValue("UserId", out userData);
-
-                if (userData != null)
-                {
+               if( httpContextAccessor.HttpContext?.Session.TryGetValue("UserId", out userData)==true)
+             
 
                     userId = Guid.Parse(System.Text.Encoding.UTF8.GetString(userData));
-                }
+               
 
             }
             catch (Exception)
@@ -83,18 +81,29 @@ namespace ErpaHoldingFatihKarakas.EntityFrameworkCore
                     {
                         case EntityState.Added:
                             entity.CreateTime = DateTime.Now;
-                            entity.CreaterUserId = (Guid)userId!;
+                            entity.CreaterUserId = Guid.Parse("920ef4f9-e2fa-4835-bf82-08db6f494f41");
+                            //entity.CreaterUserId = (Guid)userId!;
+
+
                             break;
 
                         case EntityState.Deleted:
                             entity.DeletionTime = DateTime.Now;
-                            entity.DeleterUserId = (Guid)userId!;
+                            entity.CreaterUserId = Guid.Parse("920ef4f9-e2fa-4835-bf82-08db6f494f41");
+
+                            //entity.DeleterUserId = (Guid)userId!;
+
+
 
                             break;
 
                         case EntityState.Modified:
                             entity.UpdateTime = DateTime.Now;
-                            entity.UpdatetorUserId = (Guid)userId!;
+                            entity.CreaterUserId = Guid.Parse("920ef4f9-e2fa-4835-bf82-08db6f494f41");
+
+                            //entity.UpdatetorUserId = (Guid)userId!;
+
+
 
                             break;
                        

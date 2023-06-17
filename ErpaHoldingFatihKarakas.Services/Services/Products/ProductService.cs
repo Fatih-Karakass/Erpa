@@ -28,6 +28,7 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Products
         public async Task<ProductDto> CreateAsync(ProductCreateDto productDto)
         {
            Product product=_mapper.Map<Product>(productDto);
+            product.Photo = productDto.Photo.FileName;
            var producFromDb= await _repository.CreateAsync(product);
             await _unitOfWork.SaveChangesAsync();
             return _mapper.Map<ProductDto>(producFromDb);
@@ -98,8 +99,9 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Products
         {
          
             var product = _mapper.Map<Product>(productDto);
-           
-           var productFromDb= await _repository.UpdateAsync(product);
+            product.Photo = productDto.Photo.FileName;
+
+            var productFromDb = await _repository.UpdateAsync(product);
             await _unitOfWork.SaveChangesAsync();
 
             return _mapper.Map<ProductDto>(productFromDb);

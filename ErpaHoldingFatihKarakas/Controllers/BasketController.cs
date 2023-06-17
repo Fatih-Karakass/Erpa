@@ -29,8 +29,8 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
         public async Task<IActionResult> RemoveProductFromBasket(int productId,int productCount,Guid userId)
         {
 
-            var basket =  _basketServices.AddProductToBasket(productId,productCount,userId);
-            return Ok(basket);
+             await _basketServices.AddProductToBasket(productId,productCount,userId);
+            return Ok();
 
         }
         [HttpPut]
@@ -38,15 +38,22 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
         public async Task<IActionResult> UpdateBasket(int productId,int productCount,Guid userId)
         {
 
-            var basket = _basketServices.AddProductToBasket(productId, productCount,userId);
-            return Ok(basket);
+             await _basketServices.AddProductToBasket(productId, productCount,userId);
+            return Ok();
 
         }
         [HttpGet]
         public async Task<IActionResult> ListBasket(int basketId)
         {
 
-            var basket = _basketServices.ListBasket(basketId);
+            var basket = await _basketServices.ListBasket(basketId);
+            return Ok(basket);
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> BasketFinished(int basketId,string adress)
+        {
+            var basket = await _basketServices.BasketFinished(basketId, adress);
             return Ok(basket);
 
         }

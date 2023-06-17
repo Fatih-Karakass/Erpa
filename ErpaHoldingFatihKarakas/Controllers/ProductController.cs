@@ -17,8 +17,7 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
             _productServices = productServices;
         }
         [HttpPost]
-        [Authorize(Roles ="Admin")]
-        public async Task<IActionResult> AddProduct(ProductCreateDto productDto)
+        public async Task<IActionResult> AddProduct([FromForm]ProductCreateDto productDto)
         {
 
           var product= await _productServices.CreateAsync(productDto);
@@ -27,7 +26,7 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
         }
         [HttpPost]
 
-        public async Task<IActionResult> UpdateProduct(ProductUpdateDto productDto)
+        public async Task<IActionResult> UpdateProduct([FromForm] ProductUpdateDto productDto)
         {
 
             var product = await _productServices.UpdateAsync(productDto);

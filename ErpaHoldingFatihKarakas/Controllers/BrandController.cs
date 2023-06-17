@@ -51,7 +51,7 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
         }
         [HttpGet]
 
-        public async Task<IActionResult> GetBrand(int Id)
+        public async Task<IActionResult> GetBrandProducts(int Id)
         {
           var brand=  await _brandRepository.Get(Id);
             return Ok(brand);

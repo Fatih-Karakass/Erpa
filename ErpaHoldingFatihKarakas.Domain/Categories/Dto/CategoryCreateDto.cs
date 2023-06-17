@@ -13,6 +13,6 @@ namespace ErpaHoldingFatihKarakas.Domain.Categories.Dto
         public string Name { get; set; }
         public string Desciription { get; set; }
 
-        public int? SubCategoryId { get; set; }
+        //public int? SubCategoryId { get; set; }
     }
 }

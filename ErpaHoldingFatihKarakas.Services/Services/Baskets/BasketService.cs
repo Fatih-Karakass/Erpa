@@ -44,10 +44,10 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Baskets
             
             var product=await _productRepository.GetByIdAsync(productId);
             var basket = await _repository.GetAll()
+                .Where(x => x.IsOrdered == false)
                 .Include(x=>x.Products)
                 .Include(x=>x.User)
                 .Where(x=>x.User.Id==UserId)
-                .Where(x => x.IsOrdered == false)
                 .FirstOrDefaultAsync();
             if(product == null)
             {
@@ -58,7 +58,7 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Baskets
                 throw new Exception("Stok sayısı yetersiz");
             }
 
-            if (basket == null)//sepet yoksa
+            if (basket == null)//basket yoksa
             {
                 Basket newbasket = new Basket()
                 {
@@ -73,6 +73,8 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Baskets
             }
             else//basket varsa
             {
+                basket.Products.Add(product);
+                await _unitOfWork.SaveChangesAsync();
                 await _repository.UpdateProductCountBasket(basket.Id, productId, productCount);
 
             }
@@ -105,12 +107,23 @@ namespace ErpaHoldingFatihKarakas.Application.Services.Baskets
 
         public async Task<OrderDto> OrderCreated(string adress, BasketDto basketFromDb)
         {
-            var basket = _mapper.Map<Basket>(basketFromDb);
-            Order order = new Order
+            var t = await _repository.GetAll()
+                .Include(x => x.User)
+                .Include(x => x.Products)
+                .Include(x => x.Order)
+                .FirstOrDefaultAsync(x=>x.Id==basketFromDb.Id);
+            if (t == null)
             {
-             Adress=adress,    
-             Basket=basket
-            };
+                throw new Exception("bulunamadı");
+            }
+            var basket = _mapper.Map<Basket>(basketFromDb);
+            Order order = new Order();
+            
+            order.Adress = adress;
+            order.Basket = t;
+           
+            //order.Basket = basket;
+            
             await _orderRepository.CreateAsync(order);
             await _unitOfWork.SaveChangesAsync();
             return _mapper.Map<OrderDto>(order);

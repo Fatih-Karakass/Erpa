@@ -37,7 +37,7 @@ namespace ErpaHoldingFatihKarakas.API.Controllers
 
         }
         [HttpGet]
-        public async Task<IActionResult> GetAllProduct()
+        public async Task<IActionResult> GetAllCategory()
         {
 
             var categories = await _categoryServices.GetAll();

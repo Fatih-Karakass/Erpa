@@ -1,4 +1,4 @@
-﻿using ErpaHoldingFatihKarakas.Domain.Repositories;
+﻿    using ErpaHoldingFatihKarakas.Domain.Repositories;
 using ErpaHoldingFatihKarakas.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
